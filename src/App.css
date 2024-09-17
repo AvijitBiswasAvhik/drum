@@ -3,17 +3,19 @@
   background-color: #8d8d8d;
 }
 .drumBox {
-  height: 316px;
   background-color: #b3b3b3;
-  width: 660px;
   border: 4px solid #fdab13;
-  padding: 8px;
+  padding: 28px;
+  height: fit-content;
+  width: fit-content;
 }
 .pad-bank {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 7px;
-  height: 100%;
+  height: fit-content;
+  width: fit-content;
+ 
 }
 .drum-pad {
   background-color: #808080;
