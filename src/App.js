@@ -33,20 +33,24 @@ function App() {
   //   "https://pagalfree.com/musics/128-Bheed%20Mein%20Tanhaee%20Mein%20-%20Tumsa%20Nahin%20Dekha%20A%20Love%20Story%20128%20Kbps.mp3";
 
   useEffect(() => {
-    if (src.src !== "" && src.src != soundRef.current._src) {
+    if (src.src !== "") {
       soundRef.current = new Howl({
         src: src.src,
         html5: true,
       });
+      // Set the volume after initializing Howl
       soundRef.current.volume(button.volume);
+
       return () => {
-        soundRef.current.unload();
+        if (soundRef.current) {
+          soundRef.current.unload();
+        }
       };
     }
   }, [src.src]);
+
   const play = () => {
     if (soundRef.current) {
-      //  console.log(src);
       soundRef.current.play();
     }
   };
