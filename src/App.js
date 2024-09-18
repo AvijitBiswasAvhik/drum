@@ -11,7 +11,7 @@ function App() {
   let [button, setButton] = useState({
     power: false,
     bank: false,
-    volume: 30,
+    volume: 0.05,
   });
   let [src, setSrc] = useState({ name: "", src: "", count: 1 });
   const soundRef = useRef(null);
@@ -28,13 +28,12 @@ function App() {
     e.stopPropagation();
     setButton({ ...button, volume: e.target.value });
     setSrc({ ...src, name: e.target.value * 100 });
-    console.log(e.target.value);
   }
   // let src =
   //   "https://pagalfree.com/musics/128-Bheed%20Mein%20Tanhaee%20Mein%20-%20Tumsa%20Nahin%20Dekha%20A%20Love%20Story%20128%20Kbps.mp3";
 
   useEffect(() => {
-    if (src.src != "") {
+    if (src.src !== "") {
       soundRef.current = new Howl({
         src: src.src,
         html5: true,
@@ -226,11 +225,12 @@ function App() {
                 value={button.volume}
                 onChange={(e) => volume(e)}
                 type="range"
-                max={1}
+                max={1} // Keep max as 1 for the 0.0-1.0 range
                 min={0}
-                step={0.01}
+                step={0.01} // Allows for finer control within the 0.0-1.0 range
                 className="volume"
               />
+
               <div className="button-container">
                 <p>BANK</p>
                 <div className="button">
